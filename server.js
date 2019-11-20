@@ -25,6 +25,24 @@ app.get('/cats', function (req, res, next) {
   res.status(200).send(resBody);
 });
 
+app.get('/', function (req, res, next) {
+  res.status(200).sendFile(__dirname + '/public/index.html');
+});
+
+app.get('/people', function (req, res, next) {
+  res.status(200).sendFile(__dirname + '/public/people.html');
+});
+
+app.get('/people/:personName', function (req, res, next) {
+  console.log("== req.params:", req.params);
+  res.status(200).sendFile(__dirname + '/public/people/' + req.params.personName + '.html');
+  // next();
+});
+
+app.get('*', function (req, res, next) {
+  res.status(404).sendFile(__dirname + '/public/404.html');
+});
+
 // app.post()
 // app.patch()
 
